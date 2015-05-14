@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /js
+Disallow: /css
+Disallow: /video
+Disallow: /img
+Allow: /
+Disallow: /flash
+
+Sitemap: /sitemap.xml
+

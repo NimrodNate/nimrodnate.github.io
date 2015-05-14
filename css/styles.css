@@ -1,0 +1,569 @@
+/* ============================== */
+/* ! Layout for desktop version   */
+/* ============================== */
+
+	h1, h2, h3, h4, h5, h6, p, a, span {
+	    font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+	    font-weight: normal;
+	    line-height: 140%;
+	    text-rendering: optimizeLegibility;
+	    -webkit-font-smoothing: antialiased;
+	}
+
+	#myTitle{
+		font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+	    font-weight: normal;
+	    line-height: 140%;
+		color: #111111 !important;
+		text-align: center;
+    	padding-top: 3%; 
+	    text-rendering: optimizeLegibility;
+	    -webkit-font-smoothing: antialiased;
+
+	}
+	
+	/*#blog{
+		display: none;
+	}*/
+
+	#gallery {
+		margin-top: 150px;
+	}
+
+
+	.galleryImage{
+		margin-bottom: 20px;
+		text-decoration: none;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+	    color: #111111;
+	    text-decoration:none; 
+	    cursor:pointer;  
+	}
+
+	header{
+		height: 120px !important;
+		padding-top: 30px;
+		background: #FFFFFF;
+		position: fixed;
+		display: block;
+		opacity: 0.99;
+		width: 100%;
+		top: 0 !important;
+		z-index: 1000000000000;
+		box-shadow: 0px 1px 4px rgba(0,0,0,.2);
+	}
+
+	#myIcon {
+		background-repeat: no-repeat;
+		display: block;
+		text-align: center;
+		background-color: white;
+	}
+
+	#nav{
+		color: #666666 !important;
+		/*font: 18px  'Ropa Sans', sans-serif;*/
+		text-align: center;
+		padding-top: 3%;
+	}
+	
+	#nav a{
+		color: #666666 !important;
+		text-decoration:none;
+		opacity: 0.5;
+	}
+
+	#nav #about:hover{
+		opacity: 1;
+		text-decoration:none;
+		list-style:none;
+	}
+
+	#nav #blog:hover{
+		opacity: 1;
+		text-decoration:none;
+		list-style:none;
+	}
+
+	#nav #devart:hover{
+		opacity: 1;
+		text-decoration:none;
+		list-style:none;
+	}
+
+    /*Video fix*/
+    #video{
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 55.5%;
+        height: 0;
+        margin-bottom: 16px;
+        overflow: hidden;
+    }
+
+    #video iframe,
+    #video object,
+    #video embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+     #video{ padding-top: 0; }
+    }
+
+
+	/*About*/
+	
+	.me{
+		margin-bottom: 80px; 	
+	}
+
+	.me h1{
+		margin-top: 100px; 
+		margin-bottom: 20px; 
+	}
+
+	.history h2{
+		margin-top: 40px; 
+	}
+
+	.other{
+		margin-top: 100px; 
+		margin-bottom: 50px; 
+	}
+
+	/*.history{
+		text-align: center;
+		margin-top: 35px; 
+		margin-bottom: 20px; 
+	}*/
+	
+
+	/*Social*/
+	#footerSocial{
+		/*background-color: green;*/
+		text-align: center;
+		margin: 0 auto;
+	}
+
+	#headerSocial{
+		/*background-color: green;*/
+		text-align: right;
+	}
+
+	#dribble{
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		background-image: url(../img/social/dribble.png);
+		background-repeat: no-repeat;
+	}
+
+	#twitter{
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		background-image: url(../img/social/twitter.png);
+		background-repeat: no-repeat;
+	}
+
+	#facebook{
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		background-image: url(../img/social/facebook.png);
+		background-repeat: no-repeat;
+	}
+
+	#linkedin{
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		background-image: url(../img/social/linked.png);
+		background-repeat: no-repeat;
+	}
+
+	#contact{
+		width: 45px;
+		height: 45px;
+		opacity: 0.5;
+		background-image: url(../img/social/mail.png);
+		background-repeat: no-repeat;
+	}
+
+
+	#dribble:hover{
+		left:-5px;
+		top:-5px;
+		opacity: 1;
+		text-decoration:none;
+ 		box-shadow:1px 1px #ea4c88, 
+              2px 2px #ea4c88, 
+              3px 3px #ea4c88,
+              4px 4px #ea4c88,
+              5px 5px #c54978;    
+	}
+
+	#twitter:hover{
+		left:-5px;
+		top:-5px;
+		opacity: 1;
+		text-decoration:none;
+ 		box-shadow:1px 1px #4099FF, 
+              2px 2px #4099FF, 
+              3px 3px #4099FF,
+              4px 4px #4099FF,
+              5px 5px #5788c4;    
+	}
+	#facebook:hover{
+		left:-5px;
+		top:-5px;
+		opacity: 1;
+		text-decoration:none;
+ 		box-shadow:1px 1px #3B5998, 
+              2px 2px #3B5998, 
+              3px 3px #3B5998,
+              4px 4px #3B5998,
+              5px 5px #5788c4;    
+	}
+
+	#linkedin:hover{
+		left:-5px;
+		top:-5px;
+		opacity: 1;
+		text-decoration:none;
+ 		box-shadow:1px 1px #4875B4, 
+              2px 2px #4875B4, 
+              3px 3px #4875B4,
+              4px 4px #4875B4,
+              5px 5px #5788c4;    
+	}
+
+	#contact:hover{
+		left:-5px;
+		top:-5px;
+		opacity: 1;
+		text-decoration:none;
+ 		box-shadow:1px 1px #80c465, 
+              2px 2px #80c465, 
+              3px 3px #80c465,
+              4px 4px #80c465,
+              5px 5px #80c465;    
+	}
+	.social{
+		width: 45px;
+		height: 45px;
+		border-radius: 80%;
+		margin-top:30px; 
+		margin-right:0.5%;
+		margin-left: auto;
+		display: inline-block;
+		position:relative;
+		color:white;
+		left:0px;
+		top:0px;
+		text-transform:uppercase;
+		  -webkit-transition: all 0.12s ease-out;
+		  -moz-transition: all 0.12s ease-out;
+		  -o-transition: all 0.12s ease-out;
+		  transition: all 0.12s ease-out;
+	}
+
+	
+	/* Styles for rollover of boxes */
+	.fourcol { position: relative; float: left; }
+	.thumb img { display: block; } /* Fixes reset */
+	.content { position: absolute; overflow: hidden; width:100%; bottom: 25px;  height: 0px; background-color: #111111; opacity: 0.8;}
+	.txt { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:16pt;  font-family: 'Ropa Sans', sans-serif; }
+	.txt p { font-size: 14pt;}
+
+	/* Styles for rollover of boxes */
+	.threecol { position: relative; float: left; }
+	.thumb img { display: block; } /* Fixes reset */
+	.contentAds { position: absolute; overflow: hidden; width:100%; bottom: 25px;  height: 0px; background-color: #111111; opacity: 0.8;}
+	.txtAds { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:14pt;  font-family: 'Ropa Sans', sans-serif; }
+	.txtAds p { font-size: 12pt;}
+
+	/*Project page*/
+	.projectTitle{
+		display: none;
+	}
+
+	.titles{
+		padding-top: 2%;
+		padding-bottom: 2%;
+		color: #333333;
+		display: block;
+	}
+
+	.about{
+		/*text-align: center;
+		padding-top: 80px;
+		padding-bottom:80px;*/
+		margin-bottom:20px;
+		height: 200px;
+		color: #111111;
+		display: block;
+		background-repeat: repeat-x;
+		/*background-position: fixed;*/
+		background-image: url(../img/about/about-banner.gif);
+		background-color: #ccff00;
+	}
+
+	.cv{
+		color: #111111;
+	}
+
+	.details{
+		color: #333333;
+		display: block;
+	}
+
+	#pixelLine{
+		margin-top: 20px;
+		content:"";
+		padding-top: 0px;
+		margin-bottom: 20px;
+		display:block;
+		width:100%;
+		height:1px;
+		background-color:#e7e7e7;
+	}
+
+	#video{
+        width: 100% !important;
+        height:auto !important;
+		margin-bottom:20px;
+	}
+
+	.sixcol img{
+		margin-bottom: 20px;
+	}
+
+	.twelvecol img{
+		margin-bottom: 20px;
+	}
+
+	ul{
+		list-style-type: none;
+	}
+
+    .me p {
+		color: #616161;
+        padding: 20px;
+		font-size: 1.2em;
+		line-height: 160%;
+		text-align: center;
+		margin: 0 0 0 0;
+	}
+
+	#topbutton{
+		margin-top:30px;
+		padding:5px;
+		width:300px;
+		height: 80px;
+		color: #ffffff;
+		opacity: 0.5;
+		border: 1px solid #cccccc;
+		background-color:#cccccc;
+		text-align: center;
+	}
+
+	#topbutton:hover{
+		cursor: pointer;
+		opacity: 1;
+		border: 1px solid #cccccc;
+		text-align: center;
+		position:relative;
+	}
+
+	.footNotes:hover{
+		opacity: 1;
+		text-decoration:none;
+		list-style:none;
+	}
+
+	.footNotes a{
+		color: #666666 !important;
+		text-decoration:none;
+		opacity: 0.5;
+
+	}
+
+	.footNotes p{
+		color: #666666 !important;
+    	padding: 10px 15px;
+    	margin-right: 0;
+    	margin-left: 0;
+		line-height: 100px;
+		text-align: center; 
+	}
+
+	
+	
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 763px) {
+
+
+	#myTitle {
+		display: none;
+	}
+	
+	header{
+		height: 130px !important;
+		padding-top: 10px;
+	}
+
+	#gallery {
+		margin-top: 150px;
+	}
+
+	#pixelLine{
+		margin-top: 10px;
+		content:"";
+		margin-bottom: 20px;
+		display:block;
+		width:100%;
+		height:1px;
+		background-color:#e7e7e7;
+	}
+
+	.row .sixcol,
+    .row .threecol {
+		text-align: center;
+	}
+
+	.galleryImage{
+		margin-bottom: 20px;
+	}
+
+	#headerSocial{
+		/*background-color: green;*/
+		text-align: center;
+	}
+
+	#nav{
+		color: #666666 !important;
+		/*font: 18px  'Ropa Sans', sans-serif;*/
+		text-align: center;
+		padding-top: 2%;
+	}
+
+	.social{
+		margin-top:10px; 
+	}
+
+	/*Project page*/
+
+
+	.titles{
+		height:0.5%;
+		text-align: left;
+		padding-left: 10px;
+		padding-bottom: 2%; 
+		color: #333333;
+		display: block;
+	}
+
+	.details{
+		height:1%;
+		text-align: left;
+		padding: 2%; 
+		/*background-color: red;*/
+		
+		color: #333333;
+		display: block;
+	}
+
+	.projectTitle{
+		font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+	    font-weight: normal;
+		line-height: 140%;	
+		display: block;
+		text-align: left;
+		padding:5%; 
+		text-rendering: optimizeLegibility;
+	    -webkit-font-smoothing: antialiased;
+	}
+	
+	.me h1{
+		text-align: center;
+	}
+
+/*
+	.me{
+		padding: 2%;
+		
+	}
+*/
+
+	.other{
+		padding: 2%;
+		text-align: center;
+		margin-top: 50px; 
+		margin-bottom: 50px; 
+	}
+
+	.other h4{
+		text-align: center;
+	}
+    
+    .jumping h4{
+        
+    }
+
+
+	.hideproject{
+		display: none;
+	}
+
+    .threecol,
+    .fourcol, 
+	.sixcol
+    img{
+		margin-bottom: 5px;
+	}
+
+	.content{ display: none; } /* Fixes reset */
+    
+/*
+    .container p {
+		color: #616161;
+        padding: 20px;
+		font-size: 1em;
+		line-height: 160%;
+		text-align: left;
+		margin: 0 0 0 0;
+	}
+*/
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+
+	
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
