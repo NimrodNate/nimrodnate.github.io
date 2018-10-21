@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, height=device-height">
+    <title>Digital - Halloween ARkit Pumpkin</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="theme-color" content="#000000"/>
+    
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Font import  -->
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+<head>
+
+    <style>
+
+        body{
+            font-family: 'Acme', sans-serif;
+            color: #FFFFFF;
+            background-color: #000000;
+            text-align: center;
+            padding: 0;
+            margin: auto;
+        }
+        
+        h1{
+            letter-spacing: 0.1em;
+            text-shadow:1px 1px darkorange, 
+              2px 2px darkorange; 
+        }
+        
+        h3{
+            color: #FFFFFF;
+        }
+
+        img {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        hr{
+            border-color: green;
+        }
+
+        p {
+            margin-left: 50px;
+            margin-right: 50px;
+            text-align: center;
+        }
+
+        .container{
+            top: 0;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgb(0,0,0);
+/*            background: linear-gradient(0deg, rgba(0,0,0,1) 19%, rgba(255,255,255,1) 100%);*/
+        }
+
+        .supportios{
+            color: darkorange;
+            background: transparent;
+            display: inline-block;
+        }
+
+        .relar [data-hide-on-relar] {
+            display: none;
+        }
+        
+
+    </style>
+
+    <script>
+        // ARkit checks
+        (function () {
+            console.log("AR functions")
+            var isRelAR = false;
+            var a = document.createElement('a');
+            if (a.relList.supports('ar')) {
+                isRelAR = true;
+            }
+            document.documentElement.classList.add(isRelAR ? 'relar' : 'no-relar');
+        })();
+
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Spooky Pumpkin</h1>
+        <h3>Tap the Halloween Pumpkin<br>for an AR experience</h3>
+        <hr>
+        <p data-hide-on-relar="" class="supportios">ARkit QuickLook supported on iOS&nbsp;12 only. If you seeing this message your device does not support at ARkit QuickLook.</p>
+  
+        <div><a href="usd/halloween-pumpkin.usdz" rel="ar"><img alt="pumpkin image" width="250" src="img/main-icon.png"></a></div>
+        <hr>
+        <p>If you wish too know more about this Halloween ARkit Pumpkin please contact Head of Digital at VCCP.</p>
+    
+    </div>
+    <script src="service-worker.js"></script>
+    <script>
+      (function() {
+            console.log("Regsiter the service worker")
+            'use strict';
+            // TODO - 2: Regsiter the service worker
+            if (!('serviceWorker' in navigator)) {
+              console.log('Service worker not supported');
+              return;
+            }
+            navigator.serviceWorker.register('service-worker.js')
+              .then(function(registration) {
+              console.log('Registered at scope:', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('Registration failed:', error);
+            });
+        })();
+    </script>
+</body>
+</html>
