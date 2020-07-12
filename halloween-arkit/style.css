@@ -1,0 +1,127 @@
+body{
+    font-family: 'Acme', sans-serif;
+    color: #FFFFFF;
+    background-color: #000000;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+}
+
+a{
+    color: white;
+}
+
+h3{
+    color: #FFFFFF;
+}
+
+img {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+p {
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: center;
+}
+
+.footer p{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.container{
+    top: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgb(0,0,0);
+}
+
+.header{
+    background-image: url("img/logo.png");
+    background-repeat: no-repeat;
+    background-color: #000000;
+    background-position: center;
+    background-size: 366px 236px;
+
+    height: 230px;
+    width: 100%;
+    margin: 0;
+}
+
+.graveYard{
+    background: rgb(120,13,204);
+    background: radial-gradient(circle, rgba(120,13,204,1) 22%, rgba(0,0,0,1) 100%);
+}
+
+.pumpkin{
+    background-image: url("img/dark-space.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    display: block;
+    height: 308px;
+}
+
+.ix-logo{
+    background-image: url("img/ix-logo.png");
+    background-repeat: no-repeat;
+    background-color: #000000;
+    background-position: center;
+    background-size: 250px 52px;
+
+    height: 52px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10%;
+
+}
+
+.supportios{
+    z-index: 9999999;
+}
+
+.relar [data-hide-on-relar] {
+    display: none;
+}
+
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #111111;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 5px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

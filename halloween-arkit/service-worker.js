@@ -3,8 +3,12 @@ var cacheName = 'PWA-usd';
 var filesToCache = [
     '/',
     '/index.html',
-    '/img/pumpkin.jpg',
-    '/usd/halloween-pumpkin.usdz'
+    '/img/pumpkinOfTerror.png',
+    '/img/logo.png',
+    '/img/ix-logo.png',
+    '/img/dark-space.png',
+    '/img/button.png',
+    '/usd/pumpkin-of-terror.usdz'
 ];
 
 self.addEventListener('install', function(e) {

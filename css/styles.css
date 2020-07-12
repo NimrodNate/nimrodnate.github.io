@@ -3,7 +3,7 @@
 /* ============================== */
 
 	h1, h2, h3, h4, h5, h6, p, a, span {
-	    font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+	   font-family: 'Roboto', sans-serif;
 	    font-weight: normal;
 	    line-height: 140%;
 	    text-rendering: optimizeLegibility;
@@ -11,7 +11,7 @@
 	}
 
 	#myTitle{
-		font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+		font-family: 'Roboto', sans-serif;
 	    font-weight: normal;
 	    line-height: 140%;
 		color: #111111 !important;
@@ -284,14 +284,14 @@
 	.fourcol { position: relative; float: left; }
 	.thumb img { display: block; } /* Fixes reset */
 	.content { position: absolute; overflow: hidden; width:100%; bottom: 25px;  height: 0px; background-color: #111111; opacity: 0.8;}
-	.txt { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:16pt;  font-family: 'Ropa Sans', sans-serif; }
+	.txt { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:16pt;  font-family: 'Roboto', sans-serif; }
 	.txt p { font-size: 14pt;}
 
 	/* Styles for rollover of boxes */
 	.threecol { position: relative; float: left; }
 	.thumb img { display: block; } /* Fixes reset */
 	.contentAds { position: absolute; overflow: hidden; width:100%; bottom: 25px;  height: 0px; background-color: #111111; opacity: 0.8;}
-	.txtAds { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:14pt;  font-family: 'Ropa Sans', sans-serif; }
+	.txtAds { position: relative; top: 80px;  padding: 10px; color: #FFFFFF; font-size:14pt;  font-family: 'Roboto', sans-serif; }
 	.txtAds p { font-size: 12pt;}
 
 	/*Project page*/
@@ -490,7 +490,7 @@
 	}
 
 	.projectTitle{
-		font-family: "Ropa Sans", Helvetica, Arial, sans-serif;
+		font-family: 'Roboto', sans-serif;
 	    font-weight: normal;
 		line-height: 140%;	
 		display: block;

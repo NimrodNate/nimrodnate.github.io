@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, height=device-height">
@@ -7,132 +8,100 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-config" content="/browserconfig.xml">
     <meta name="theme-color" content="#000000"/>
-    
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
+
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" type="text/css">
+
     <!-- Font import  -->
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
-<head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128378758-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    <style>
-
-        body{
-            font-family: 'Acme', sans-serif;
-            color: #FFFFFF;
-            background-color: #000000;
-            text-align: center;
-            padding: 0;
-            margin: auto;
-        }
-        
-        h1{
-            letter-spacing: 0.1em;
-            text-shadow:1px 1px darkorange, 
-              2px 2px darkorange; 
-        }
-        
-        h3{
-            color: #FFFFFF;
-        }
-
-        img {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-        
-        hr{
-            border-color: green;
-        }
-
-        p {
-            margin-left: 50px;
-            margin-right: 50px;
-            text-align: center;
-        }
-
-        .container{
-            top: 0;
-            position: absolute;
-            text-align: center;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            background: rgb(0,0,0);
-/*            background: linear-gradient(0deg, rgba(0,0,0,1) 19%, rgba(255,255,255,1) 100%);*/
-        }
-
-        .supportios{
-            color: darkorange;
-            background: transparent;
-            display: inline-block;
-        }
-
-        .relar [data-hide-on-relar] {
-            display: none;
-        }
-        
-
-    </style>
-
-    <script>
+  gtag('config', 'UA-128378758-1');
         // ARkit checks
         (function () {
-            console.log("AR functions")
+            var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
             var isRelAR = false;
             var a = document.createElement('a');
             if (a.relList.supports('ar')) {
                 isRelAR = true;
             }
             document.documentElement.classList.add(isRelAR ? 'relar' : 'no-relar');
+
+             if (!isSafari){
+                document.documentElement.classList.add(isRelAR ? 'relar' : 'no-relar');
+            }
         })();
-
     </script>
-
 </head>
 <body>
     <div class="container">
-        <h1>Spooky Pumpkin</h1>
-        <h3>Tap the Halloween Pumpkin<br>for an AR experience</h3>
-        <hr>
-        <p data-hide-on-relar="" class="supportios">ARkit QuickLook supported on iOS&nbsp;12 only. If you seeing this message your device does not support at ARkit QuickLook.</p>
-  
-        <div><a href="usd/halloween-pumpkin.usdz" rel="ar"><img alt="pumpkin image" width="250" src="img/main-icon.png"></a></div>
-        <hr>
-        <p>If you wish too know more about this Halloween ARkit Pumpkin please contact Head of Digital at VCCP.</p>
-    
+<!--   Not supported message     -->
+        <div data-hide-on-relar="" id="myModal" class="modal">
+          <!-- Modal content -->
+          <div id="detect" class="modal-content">
+<!--            <span id="close" class="close">&times;</span>-->
+              <h1>👻 &nbsp;👻 &nbsp;👻 </h1>
+              <p>If you can’t see a link it means some evil goblin has tricked you
+                  into thinking your phone can support such terrifyingly cutting edge technology. Maybe you're not an Apple bobbing fan, and more of an Android or just too old for this. I'm afraid you need iOS12, and safari on your Apple iPhone SE and up.<br><br>Don't be scARied. Get updating and come back.</p>
+          </div>
+
+        </div>
+<!---->
+<!--    Header    -->
+        <div class="header"></div>
+        <p>We're putting the AR in scARy this halloween with a little RnD.</p>
+<!--    grave yard    -->
+        <div class="graveYard">
+            <div class="pumpkin"><a href="usd/pumpkin-of-terror.usdz" rel="ar"><img alt="pumpkin of terror" width="250" src="img/pumpkinOfTerror.png"></a></div>
+        </div>
+        <div><a href="usd/pumpkin-of-terror.usdz" rel="ar"><img src="img/button.png" width="300"></a></div>
+        <div class="footer">
+            <h1>The reality of this technology is the scary bit.</h1>
+            <p>It's early days for where web AR can go but rest assured it will keep evolving. Right now this is perfect for item exploration as part of bigger web experiences. Think product launches, within a brand's online shop experience, character engagement etc.But in time we'll be able to dig even deeper...<br><br>Support will be wider, performance better, and more functionality will become available to us. So this is a big old nail in the coffin for needing apps or plugins for AR.
+            <h2>Don’t be terrified of technology.</h3></p>
+            <br><br>
+            <p>If you wish to know more about ARkit 2.0 QuickLook</p>
+        </div>
+
     </div>
-    <script src="service-worker.js"></script>
-    <script>
-      (function() {
-            console.log("Regsiter the service worker")
-            'use strict';
-            // TODO - 2: Regsiter the service worker
-            if (!('serviceWorker' in navigator)) {
-              console.log('Service worker not supported');
-              return;
-            }
-            navigator.serviceWorker.register('service-worker.js')
-              .then(function(registration) {
-              console.log('Registered at scope:', registration.scope);
-            })
-            .catch(function(error) {
-              console.log('Registration failed:', error);
-            });
-        })();
-    </script>
+<script src="service-worker.js"></script>
+<script>
+  (function() {
+        console.log("Regsiter the service worker")
+        'use strict';
+        // TODO - 2: Regsiter the service worker
+        if (!('serviceWorker' in navigator)) {
+          console.log('Service worker not supported');
+          return;
+        }
+        navigator.serviceWorker.register('service-worker.js')
+          .then(function(registration) {
+          console.log('Registered at scope:', registration.scope);
+        })
+        .catch(function(error) {
+          console.log('Registration failed:', error);
+        });
+    })();
+</script>
 </body>
 </html>
