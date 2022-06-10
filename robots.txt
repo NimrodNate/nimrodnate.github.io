@@ -5,6 +5,7 @@ Disallow: /video
 Disallow: /img
 Allow: /
 Disallow: /flash
+Disallow: /gltf
+Disallow: /webp
 
 Sitemap: /sitemap.xml
-
