@@ -1,208 +1,740 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="utf-8" />
-	<title>Nathaniel Hulley</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NH LAB — Nathaniel Hulley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1319;
+    --border: #1a2530;
+    --accent: #00e5ff;
+    --accent2: #ff3d6b;
+    --text: #c8d8e8;
+    --muted: #4a6070;
+    --white: #f0f8ff;
+  }
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	
-	<!-- 1140px Grid styles for IE -->
-	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" /><![endif]-->
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-	<!-- The 1140px Grid - http://cssgrid.net/ -->
-	<link rel="stylesheet" href="css/1140.css" type="text/css" media="screen" />
-	
-	<!-- Your styles -->
-	<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-	
-	<!--css3-mediaqueries-js - http://code.google.com/p/css3-mediaqueries-js/ - Enables media queries in some unsupported browsers-->
-	<script type="text/javascript" src="js/css3-mediaqueries.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-	<!--Delete embedded styles, just for example.-->
-	<style type="text/css">
-	
-	body {
-	font-family: 'Roboto', sans-serif;
-	}
-	
-	.container p {
-		color: #000000;
-		line-height: 100px;
-		text-align: center;
-		margin: 0 0 0 0;
-	}
+  /* Scanline overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,229,255,0.015) 2px,
+      rgba(0,229,255,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
 
-	.content p {
-		color: #FFFFFF;
-		line-height: 30px;
-		text-align: left;
-		margin: 0 0 0 0;
-	}
-	
-	
-	</style>
+  /* Grid background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-	<script type="text/javascript">
-	
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-31185257-1']);
-	  _gaq.push(['_trackPageview']);
-	
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-	
-	</script>
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 48px 40px 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    gap: 24px;
+    flex-wrap: wrap;
+  }
 
+  .logo-block {}
+
+  .logo-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .logo-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  .logo-name span {
+    color: var(--accent);
+  }
+
+  .logo-sub {
+    margin-top: 10px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  nav {
+    display: flex;
+    gap: 24px;
+  }
+
+  nav a {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  /* ─── INTRO STRIP ─── */
+  .intro-strip {
+    position: relative;
+    z-index: 10;
+    padding: 32px 40px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .intro-strip .divider {
+    width: 1px;
+    height: 48px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .intro-stat {
+    flex-shrink: 0;
+  }
+
+  .intro-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .intro-stat-num span { color: var(--accent); }
+
+  .intro-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .intro-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ─── FILTER BAR ─── */
+  .filter-bar {
+    position: relative;
+    z-index: 10;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--muted);
+    background: transparent;
+  }
+
+  .tag:hover, .tag.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0,229,255,0.06);
+  }
+
+  .tag.active-all {
+    border-color: var(--white);
+    color: var(--white);
+    background: rgba(240,248,255,0.06);
+  }
+
+  .tag-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ─── GRID ─── */
+  .experiments-grid {
+    position: relative;
+    z-index: 10;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2px;
+  }
+
+  /* ─── CARD ─── */
+  .card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translate(-2px, -2px);
+    z-index: 2;
+  }
+
+  .card:hover .card-thumb::after {
+    opacity: 1;
+  }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0a1520;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.4s;
+  }
+
+  .card:hover .card-thumb img {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+
+  .card-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  /* Placeholder for cards without images */
+  .card-thumb-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0d1a22, #081018);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-thumb-placeholder .placeholder-icon {
+    font-size: 48px;
+    opacity: 0.15;
+  }
+
+  .card-thumb-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .card-body {
+    padding: 20px 24px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .card-type {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .type-ar { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.25); }
+  .type-ai { background: rgba(255,61,107,0.1); color: var(--accent2); border: 1px solid rgba(255,61,107,0.25); }
+  .type-xr { background: rgba(140,80,255,0.1); color: #a78bfa; border: 1px solid rgba(140,80,255,0.25); }
+  .type-web { background: rgba(80,200,120,0.1); color: #4ade80; border: 1px solid rgba(80,200,120,0.25); }
+
+  .card-date {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+
+  .card-platform {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .card-link-icon {
+    font-size: 14px;
+    color: var(--muted);
+    transition: color 0.2s, transform 0.2s;
+  }
+
+  .card:hover .card-link-icon {
+    color: var(--accent);
+    transform: translate(2px, -2px);
+  }
+
+  /* Hosted badge */
+  .hosted-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,229,255,0.15);
+    border: 1px solid rgba(0,229,255,0.3);
+    padding: 3px 8px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  /* ─── FEATURED CARD ─── */
+  .card.featured {
+    grid-column: span 2;
+  }
+
+  .card.featured .card-thumb,
+  .card.featured .card-thumb-placeholder {
+    aspect-ratio: 21/9;
+  }
+
+  .card.featured .card-title {
+    font-size: 24px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 10;
+    padding: 32px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-links a {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--accent); }
+
+  .footer-copy {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeUp 0.6s ease both; }
+  .intro-strip { animation: fadeUp 0.6s 0.1s ease both; }
+  .filter-bar { animation: fadeUp 0.6s 0.15s ease both; }
+  .card { animation: fadeUp 0.5s ease both; }
+  .card:nth-child(1) { animation-delay: 0.2s; }
+  .card:nth-child(2) { animation-delay: 0.25s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.35s; }
+  .card:nth-child(5) { animation-delay: 0.4s; }
+
+  /* Filter hide/show */
+  .card.hidden {
+    display: none;
+  }
+
+  .card.reveal {
+    animation: fadeUp 0.35s ease both;
+  }
+
+  /* Count badge on filter bar */
+  .filter-count {
+    margin-left: auto;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .filter-count span {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    header, .intro-strip, .filter-bar, .experiments-grid, footer {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .card.featured { grid-column: span 1; }
+    .intro-strip { flex-wrap: wrap; }
+    .header-right { align-items: flex-start; }
+  }
+</style>
 </head>
-
-
 <body>
-	<header>
-		<div class="row">
-			
-			<div class="fourcol" id="myTitle">
-				NATHANIEL HULLEY | ADVERTISING SPECIALIST
-			</div>
-		
-			<div class="fourcol" id="myIcon">
-				<a href="../"><img src="img/home/me.gif" width="47" height="79" alt="O2-Tap"></a>
-			</div>	
-			
-			<div class="fourcol last" id="nav">
-				<a id="about" href="about">ABOUT</a> |  <a id="blog" href="http://nimrodnate.tumblr.com/">BLOG</a> |  <a id="devart" href="https://www.youtube.com/@bestbannersever" target="_blank">YOUTUBE</a>
 
-			</div>
-		</div>	
-	</header>
-	
-	<div class="container" id="gallery">
-		<div class="row">
-                <div class="fourcol">
-                    <div class="galleryImage">
-                        <h2 class="projectTitle">Polycam to Modelviewer </h2>
-                        <a href="model-2/index.html"><img src="model/model.jpg" width="350" height="250" alt="Modelviewer"></a>
-                    </div>
-                        <div class="content">
-                        <div class="txt">Polycam to Modelviewer<br>2022</div>
-                    </div>
-                </div>
-                <div class="fourcol">
-                    <div class="galleryImage">
-                        <h2 class="projectTitle">BEST BANNERS EVER</h2>
-                        <a href="https://www.youtube.com/channel/UCrv3mn1WFNidcadlRrMi5EQ"><img src="img/home/bbe-banner.jpg" width="350" height="250" alt="Arkit"></a>
-                    </div>
-                        <div class="content">
-                        <div class="txt">Create youtube advertising tech channel<br>2020</div>
-                    </div>
-                </div>
-                <div class="fourcol last">
-                    <div class="galleryImage">
-                        <h2 class="projectTitle">BIMA 100 2020</h2>
-                        <a href="https://www.linkedin.com/posts/vccp_bima100-activity-6663743634959028224-mDtY"><img src="img/home/bima.jpg" width="350" height="250" alt="Arkit"></a>
-                    </div>
-                        <div class="content">
-                        <div class="txt">BIMA 100 | Tech Trailblazer<br>2020</div>
-                    </div>
-                </div>     
-			<div class="twelvecol last">
-				<div  id="action"></div>
-			</div>
-		</div>
-        <div class="row">
-            <div class="fourcol">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">ARkit Halloween Pumpkin</h2>
-                    <a href="halloween-arkit"><img src="img/home/pumpkin.jpg" width="350" height="250" alt="Arkit"></a>
-                </div>
-                    <div class="content">
-                    <div class="txt">ARkit Quicklook article<p>My first article on linkedin<br>2020</div>
-                </div>
-            </div>
-            <div class="fourcol">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">ARkit 2.0 Quicklook article</h2>
-                    <a href="https://www.linkedin.com/pulse/ar-quicklook-file-how-hard-can-nathaniel-hulley/"><img src="img/home/arkit.jpg" width="350" height="250" alt="Arkit"></a>
-                </div>
-                    <div class="content">
-                    <div class="txt">ARkit Quicklook article<p>My first article on linkedin<br>2018</div>
-                </div>
-            </div>
-            <div class="fourcol last">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">Google Webdesigner animation</h2>
-                    <a href="gwd"><img src="img/home/gwd.jpg" width="350" height="250"></a></div>
-                    <div class="content">
-                    <div class="txt">Google Webdesigner animation<p>Designer &amp; Developer<br>2014</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="fourcol">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">MakeyMakey - Jumping Jonny</h2>
-                    <a href="jumpingjonny"><img src="img/home/jump.jpg" width="350" height="250"></a></div>
-                    <div class="content">
-                    <div class="txt">MakeyMakey - Jumping Jonny<p>Role: MakeyMakey guy<br>2014</div>
-                </div>
-            </div>
-            <div class="fourcol">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">georgehulley.com</h2>
-                    <a href="gbh"><img src="img/home/gbh.jpg" width="350" height="250" alt="site"></a>
-                </div>
-                    <div class="content">
-                    <div class="txt">georgehulley.com<p>Role: Designer &amp; Develpor<br>2014</div>
-                </div>
-            </div>
-            <div class="fourcol last">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">O2: HTML5 Mobile Banner</h2>
-                    <a href="o2-tap"><img src="img/home/o2-tap.jpg" width="350" height="250" alt="O2-Tap"></a></div>
-                    <div class="content">
-                    <div class="txt">O2: HTML5 Mobile Banner<p>Role: Designer &amp; Develpor<br>2012</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="fourcol">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">Merck: Arcoxia Uplift Game</h2>
-                    <a href="merck"><img src="img/home/merck-game.jpg" width="350" height="250" alt="Game"></a></div>
-                    <div class="content">
-                    <div class="txt">Merck: Arcoxia Uplift Game<p>Role: Designer, Character Design</div>
-                </div>	
-            </div>
-            <div class="fourcol last">
-                <div class="galleryImage">
-                    <h2 class="projectTitle">Muller: Thank you campaign HPTO</h2>
-                    <a href="muller"><img src="img/home/muller.jpg"></a></div>
-                    <div class="content">
-                    <div class="txt">Muller: Thank you campaign HPTO<p>Role: 3D Modelling, AS3 Development.</div>
-                </div>	
-            </div>
-        </div>
-	<div class="container">
-		<div class="row">
-			<div class="twelvecol" id="footerSocial">
-				<a href="http://dribbble.com/NimrodNate"><div class="social" id="dribble"></div></a>
-				<a href="https://twitter.com/NimrodNate"><div class="social" id="twitter"></div></a>
-				<a href="http://www.linkedin.com/pub/nathaniel-hulley/19/732/462"><div class="social" id="linkedin"></div></a>
-				<a href="mailto:nathanielhulley@gmail.com"><div class="social" id="contact"></div></a>
-			</div>
-		</div>
-        <div class="twelvecol">
-            <div id="pixelLine"></div>
-            <div class="footNotes"><p>&copy;2020 Nathaniel Hulley.</p></div>
-        </div>
-	</div>
-	<script src="js/jquery-1.7.2.min.js"></script>
-	<!--script src="http://code.jquery.com/jquery-1.9.1.min.js"></script-->
-  	<script src="js/rollovers.js"></script>
+<header>
+  <div class="logo-block">
+    <div class="logo-label">// Personal Lab</div>
+    <div class="logo-name">NH<span>.</span>LAB</div>
+    <div class="logo-sub">Nathaniel Hulley &mdash; XR &amp; Emerging Tech</div>
+  </div>
+  <div class="header-right">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      Actively experimenting
+    </div>
+    <nav>
+      <a href="#">Lab</a>
+      <a href="#">About</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">TikTok</a>
+    </nav>
+  </div>
+</header>
+
+<div class="intro-strip">
+  <div class="intro-stat">
+    <div class="intro-stat-num">20<span>+</span></div>
+    <div class="intro-stat-label">Yrs experience</div>
+  </div>
+  <div class="divider"></div>
+  <div class="intro-stat">
+    <div class="intro-stat-num"><span>#</span>12</div>
+    <div class="intro-stat-label">Experiments</div>
+  </div>
+  <div class="divider"></div>
+  <div class="intro-text">
+    A space to push, test and publish experiments in AR, AI and emerging tech. Some are polished, most are raw — all are real. Built by a Technical Director with 20+ years in digital production.
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">Filter //</span>
+  <button class="tag active-all" data-filter="all">All</button>
+  <button class="tag" data-filter="ar"><span class="tag-dot" style="background:#00e5ff"></span>AR</button>
+  <button class="tag" data-filter="ai"><span class="tag-dot" style="background:#ff3d6b"></span>AI</button>
+  <button class="tag" data-filter="xr"><span class="tag-dot" style="background:#a78bfa"></span>XR</button>
+  <button class="tag" data-filter="webaar"><span class="tag-dot" style="background:#4ade80"></span>WebAR</button>
+  <button class="tag" data-filter="location"><span class="tag-dot" style="background:#f59e0b"></span>Location</button>
+  <span class="filter-count">Showing <span id="count">5</span> experiments</span>
+</div>
+
+<div class="experiments-grid">
+
+  <!-- Featured card -->
+  <a href="#" class="card featured" data-tags="ar location">
+    <div class="card-thumb-placeholder">
+      <div class="placeholder-icon">🌍</div>
+      <div class="hosted-badge">Hosted here</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ar">AR · Location</span>
+        <span class="card-date">Mar 2025</span>
+      </div>
+      <div class="card-title">Google Geospatial AR — London Landmarks</div>
+      <div class="card-desc">Location-anchored AR overlays on real-world landmarks using Google's Geospatial API. Persistent anchors that survive app restarts and snap to building facades with sub-metre accuracy.</div>
+      <div class="card-footer">
+        <span class="card-platform">Google Geospatial API</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 2 -->
+  <a href="#" class="card" data-tags="ar">
+    <div class="card-thumb-placeholder">
+      <div class="placeholder-icon">🎭</div>
+      <div class="hosted-badge">Hosted here</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ar">AR · Social</span>
+        <span class="card-date">Jan 2025</span>
+      </div>
+      <div class="card-title">Meta Spark — Face Distortion Series</div>
+      <div class="card-desc">A series of face-tracking AR filters exploring how distortion and displacement maps can create uncanny, expressive effects in real time.</div>
+      <div class="card-footer">
+        <span class="card-platform">Meta Spark AR</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 3 -->
+  <a href="#" class="card" data-tags="ar">
+    <div class="card-thumb-placeholder">
+      <div class="placeholder-icon">✨</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ar">AR · Social</span>
+        <span class="card-date">Dec 2024</span>
+      </div>
+      <div class="card-title">TikTok EffectHouse — Particle World</div>
+      <div class="card-desc">Particle system effect for TikTok using EffectHouse. Hand-tracking triggers bursts that react to movement speed and direction.</div>
+      <div class="card-footer">
+        <span class="card-platform">TikTok EffectHouse → external</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 4 -->
+  <a href="#" class="card" data-tags="ai">
+    <div class="card-thumb-placeholder">
+      <div class="placeholder-icon">🤖</div>
+      <div class="hosted-badge">Hosted here</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ai">AI · Generative</span>
+        <span class="card-date">Nov 2024</span>
+      </div>
+      <div class="card-title">Stable Diffusion + Brand Imagery Pipeline</div>
+      <div class="card-desc">Workflow experiment for generating on-brand assets using LoRA fine-tuning. Built during early access to Adobe Firefly — now adapted as a general pipeline.</div>
+      <div class="card-footer">
+        <span class="card-platform">Stable Diffusion · Firefly</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 5 -->
+  <a href="#" class="card" data-tags="webaar">
+    <div class="card-thumb-placeholder">
+      <div class="placeholder-icon">📦</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-web">WebAR</span>
+        <span class="card-date">Sep 2024</span>
+      </div>
+      <div class="card-title">Polycam → model-viewer Embed</div>
+      <div class="card-desc">A pipeline for scanning physical objects with Polycam and publishing them as interactive 3D embeds on the web — no app required.</div>
+      <div class="card-footer">
+        <span class="card-platform">Polycam · model-viewer</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/nathanielhulley/">LinkedIn</a>
+    <a href="https://www.nathanielhulley.com">Portfolio</a>
+    <a href="https://www.tiktok.com/@bestbannersever">TikTok</a>
+  </div>
+  <div class="footer-copy">// NH.LAB &mdash; Nathaniel Hulley &copy; 2025</div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.tag[data-filter]');
+  const cards = document.querySelectorAll('.card[data-tags]');
+  const countEl = document.getElementById('count');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+
+      // Update button states
+      buttons.forEach(b => {
+        b.classList.remove('active-all', 'active');
+      });
+      btn.classList.add(filter === 'all' ? 'active-all' : 'active');
+
+      // Filter cards
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        const show = filter === 'all' || tags.includes(filter);
+
+        if (show) {
+          card.classList.remove('hidden');
+          card.classList.add('reveal');
+          visible++;
+          // Clean up animation class after it plays
+          card.addEventListener('animationend', () => card.classList.remove('reveal'), { once: true });
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('reveal');
+        }
+      });
+
+      countEl.textContent = visible;
+    });
+  });
+</script>
 </body>
 </html>

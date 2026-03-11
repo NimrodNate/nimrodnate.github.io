@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — NH.LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1319;
+    --border: #1a2530;
+    --accent: #00e5ff;
+    --accent2: #ff3d6b;
+    --text: #c8d8e8;
+    --muted: #4a6070;
+    --white: #f0f8ff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,229,255,0.015) 2px, rgba(0,229,255,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 48px 40px 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .logo-label { font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .logo-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); color: var(--white); letter-spacing: -0.02em; line-height: 0.95; }
+  .logo-name span { color: var(--accent); }
+  .logo-sub { margin-top: 10px; font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+
+  .status-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(0,229,255,0.07);
+    border: 1px solid rgba(0,229,255,0.2);
+    padding: 6px 14px; border-radius: 2px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent);
+  }
+  .status-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+
+  nav { display: flex; gap: 24px; }
+  nav a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  nav a:hover, nav a.active { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    z-index: 10;
+    padding: 64px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 4vw, 52px);
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-body {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.85;
+    max-width: 480px;
+  }
+
+  .hero-body p + p { margin-top: 16px; }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+  }
+
+  /* Stat blocks */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .stat-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-num span { color: var(--accent); }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* CTA links */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .cta-btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+  }
+
+  .cta-btn.primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  .cta-btn.secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .cta-btn.secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ─── SKILLS SECTION ─── */
+  .section {
+    position: relative;
+    z-index: 10;
+    padding: 56px 40px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-card:hover { border-color: var(--accent); }
+
+  .skill-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .skill-detail {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1px 1fr;
+    gap: 0 24px;
+    position: relative;
+  }
+
+  .timeline-date {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: 24px 0;
+    text-align: right;
+  }
+
+  .timeline-spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .timeline-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--accent);
+    flex-shrink: 0;
+    margin-top: 28px;
+    transition: background 0.2s;
+  }
+
+  .timeline-item:hover .timeline-dot { background: var(--accent); }
+
+  .timeline-line {
+    width: 1px;
+    flex: 1;
+    background: var(--border);
+  }
+
+  .timeline-item:last-child .timeline-line { display: none; }
+
+  .timeline-content {
+    padding: 20px 0 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:last-child .timeline-content { border-bottom: none; }
+
+  .timeline-role {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .timeline-company {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .timeline-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ─── LOOKING FOR ─── */
+  .looking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .looking-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .looking-card:hover { border-color: var(--accent); }
+
+  .looking-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .looking-card:hover::before { opacity: 1; }
+
+  .looking-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--accent);
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .looking-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .looking-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 10;
+    padding: 32px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { font-size: 10px; letter-spacing: 0.15em; color: var(--muted); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    header, .hero, .section, footer { padding-left: 20px; padding-right: 20px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .timeline-item { grid-template-columns: 80px 1px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo-block">
+    <div class="logo-label">// Personal Lab</div>
+    <div class="logo-name">NH<span>.</span>LAB</div>
+    <div class="logo-sub">Nathaniel Hulley &mdash; XR &amp; Emerging Tech</div>
+  </div>
+  <div class="header-right">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      Open to opportunities
+    </div>
+    <nav>
+      <a href="index.html">Lab</a>
+      <a href="about.html" class="active">About</a>
+      <a href="https://www.linkedin.com/in/nathanielhulley/" target="_blank">LinkedIn</a>
+      <a href="https://www.tiktok.com/@bestbannersever" target="_blank">TikTok</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">// Who I am</div>
+    <h1 class="hero-title">Tech Director.<br>XR Builder.<br><em>Always experimenting.</em></h1>
+    <div class="hero-body">
+      <p>I'm Nathaniel — a Technical Director with 20+ years in digital and technical production. I've spent my career turning complex technology into things that actually work: for clients, for teams, for audiences.</p>
+      <p>From eCRM and display to AR, VR and generative AI — I've always gravitated toward what's next. This lab is where I publish that curiosity publicly: experiments in AR, AI and immersive tech, built and shipped in the open.</p>
+      <p>Right now I'm looking for my next challenge — ideally something in XR production, technical training, or a role where I can bridge the gap between cutting-edge tech and the people who need to use it.</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-grid">
+      <div class="stat-block">
+        <div class="stat-num">20<span>+</span></div>
+        <div class="stat-label">Years in digital</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num"><span>↗</span>XR</div>
+        <div class="stat-label">Current focus</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">3<span>x</span></div>
+        <div class="stat-label">AR platforms built on</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num"><span>#</span>1</div>
+        <div class="stat-label">Sandwich enthusiast</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://www.linkedin.com/in/nathanielhulley/" target="_blank" class="cta-btn primary">↗ LinkedIn</a>
+      <a href="https://www.nathanielhulley.com" target="_blank" class="cta-btn secondary">Portfolio →</a>
+      <a href="index.html" class="cta-btn secondary">View experiments →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHAT I BUILD ─── -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">What I build with</h2>
+    <div class="section-line"></div>
+    <span class="section-num">01</span>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">📍</div>
+      <div class="skill-name">Location AR</div>
+      <div class="skill-detail">Google Geospatial API — persistent world anchors, sub-metre accuracy</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎭</div>
+      <div class="skill-name">Social AR</div>
+      <div class="skill-detail">Meta Spark AR &amp; TikTok EffectHouse — face tracking, particles, interactions</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">WebAR</div>
+      <div class="skill-detail">Browser-based 3D &amp; AR — no app required, model-viewer, Zappar</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎮</div>
+      <div class="skill-name">Unity</div>
+      <div class="skill-detail">XR development and team leadership — VR pipelines, immersive DOOH</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Generative AI</div>
+      <div class="skill-detail">Adobe Firefly, Stable Diffusion — brand-safe pipelines and production workflows</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📡</div>
+      <div class="skill-name">eCRM &amp; Display</div>
+      <div class="skill-detail">20+ years — dynamic campaigns, DCO, omni-channel production at scale</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TIMELINE ─── -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Where I've been</h2>
+    <div class="section-line"></div>
+    <span class="section-num">02</span>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">2025 — Now</div>
+      <div class="timeline-spine">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Technical Director (Volunteer)</div>
+        <div class="timeline-company">Astrarium Games</div>
+        <div class="timeline-desc">Leadership team member at a remote volunteer studio. Overseeing mixed-discipline teams building in Unity, driving strategic development and studio expansion.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2025</div>
+      <div class="timeline-spine">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">AI Technical Consultant &amp; Producer</div>
+        <div class="timeline-company">JOAN Creative (Freelance)</div>
+        <div class="timeline-desc">Advising on generative AI tools for commercial campaigns. Navigating IP risk and indemnification with client legal teams. Technical PM on a dynamic OOH campaign for eBay.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2021 — 2025</div>
+      <div class="timeline-spine">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Technical Production Director</div>
+        <div class="timeline-company">VCCP</div>
+        <div class="timeline-desc">Led and grew a nearshore Prague production team of developers and designers. Delivered campaigns for Lego, Kia, Dominos, Compare The Market and T-Mobile US. Built a VR pipeline for Outernet's immersive DOOH in London. Secured early Firefly access for AI production experiments. Standardised eCRM across 200+ Kia dealerships.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">2000s – 2021</div>
+      <div class="timeline-spine">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">20 Years in Digital Advertising</div>
+        <div class="timeline-company">Various agencies &amp; clients</div>
+        <div class="timeline-desc">A career spanning display, video, rich media, 3D, games and immersive tech. Always the person in the room asking "what does the technology actually do, and how do we make it useful?"</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── WHAT I'M LOOKING FOR ─── -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">What I'm looking for</h2>
+    <div class="section-line"></div>
+    <span class="section-num">03</span>
+  </div>
+
+  <div class="looking-grid">
+    <div class="looking-card">
+      <div class="looking-tag">Role type</div>
+      <div class="looking-title">Technical Producer or XR Lead</div>
+      <div class="looking-desc">I want to be close to the build — owning delivery, bridging tech and creative, making sure things actually ship. Ideally in XR, immersive, or emerging tech.</div>
+    </div>
+    <div class="looking-card">
+      <div class="looking-tag">Also interested in</div>
+      <div class="looking-title">Training &amp; Enablement</div>
+      <div class="looking-desc">I've spent years demystifying tech for non-technical stakeholders. I'd love a role where that's the job — helping teams understand and use emerging tools confidently.</div>
+    </div>
+    <div class="looking-card">
+      <div class="looking-tag">Location</div>
+      <div class="looking-title">Remote — UK based</div>
+      <div class="looking-desc">Based in the UK. I've run remote teams across timezones for years — async communication, distributed delivery and remote culture are second nature.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/nathanielhulley/" target="_blank">LinkedIn</a>
+    <a href="https://www.nathanielhulley.com" target="_blank">Portfolio</a>
+    <a href="https://www.tiktok.com/@bestbannersever" target="_blank">TikTok</a>
+  </div>
+  <div class="footer-copy">// NH.LAB &mdash; Nathaniel Hulley &copy; 2025</div>
+</footer>
+
+</body>
+</html>
