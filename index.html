@@ -377,7 +377,7 @@
   .type-xr { background: rgba(140,80,255,0.1); color: #a78bfa; border: 1px solid rgba(140,80,255,0.25); }
   .type-web { background: rgba(80,200,120,0.1); color: #4ade80; border: 1px solid rgba(80,200,120,0.25); }
   .type-game { background: rgba(249,115,22,0.1); color: #f97316; border: 1px solid rgba(249,115,22,0.25); }
-  .type-game { background: rgba(249,115,22,0.1); color: #f97316; border: 1px solid rgba(249,115,22,0.25); }
+  .type-installation { background: rgba(232,121,249,0.1); color: #e879f9; border: 1px solid rgba(232,121,249,0.25); }
 
   .card-date {
     font-size: 10px;
@@ -588,7 +588,8 @@
   <button class="tag" data-filter="webaar"><span class="tag-dot" style="background:#4ade80"></span>WebAR</button>
   <button class="tag" data-filter="location"><span class="tag-dot" style="background:#f59e0b"></span>Location</button>
   <button class="tag" data-filter="game"><span class="tag-dot" style="background:#f97316"></span>Game</button>
-  <span class="filter-count">Showing <span id="count">6</span> experiments</span>
+  <button class="tag" data-filter="installation"><span class="tag-dot" style="background:#e879f9"></span>Installation</button>
+  <span class="filter-count">Showing <span id="count">9</span> experiments</span>
 </div>
 
 <div class="experiments-grid">
@@ -705,6 +706,66 @@
       <div class="card-desc">A rocket game where you navigate through obstacle courses using thrust and rotation. Built in Unity with C# — my first complete WebGL game export. Based on the Gamedev.tv course.</div>
       <div class="card-footer">
         <span class="card-platform">Unity · WebGL · C#</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- ARkit Halloween Pumpkin -->
+  <a href="projects/halloween-pumpkin" class="card" data-tags="ar">
+    <div class="card-thumb">
+      <img src="img/my-pumpkin-thumb.jpg" alt="ARkit Halloween Pumpkin">
+      <div class="hosted-badge">Hosted here</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ar">AR · iOS</span>
+        <span class="card-date">2020</span>
+      </div>
+      <div class="card-title">ARkit Halloween Pumpkin</div>
+      <div class="card-desc">An iOS ARKit experience built for Halloween as a bit of fun in the office. Place a pumpkin in your real-world space using Apple's native AR framework.</div>
+      <div class="card-footer">
+        <span class="card-platform">Apple ARKit · iOS</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- ARkit 2.0 Quicklook — LinkedIn article -->
+  <a href="https://www.linkedin.com/pulse/ar-quicklook-file-how-hard-can-nathaniel-hulley/?trackingId=chri%2FxFKQ5WiQmSZm8SO5Q%3D%3D" target="_blank" class="card" data-tags="ar">
+    <div class="card-thumb">
+      <img src="img/my-arkit-thumb.jpg" alt="ARkit How hard can it be?">
+      <div class="hosted-badge">Linkedin</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-ar">AR · Article</span>
+        <span class="card-date">2018</span>
+      </div>
+      <div class="card-title">ARkit 2.0 Quicklook — How Hard Can It Be?</div>
+      <div class="card-desc">My first published article — a hands-on breakdown of Apple's AR Quicklook format, what it takes to create a .usdz file, and how to get it working on the web.</div>
+      <div class="card-footer">
+        <span class="card-platform">LinkedIn Article → external</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- MakeyMakey Jumping Jonny -->
+  <a href="projects/makeymakey" class="card" data-tags="installation">
+    <div class="card-thumb">
+      <img src="img/my-makey-thumb.jpg" alt="ARkit How hard can it be?">
+      <div class="hosted-badge">Write-up</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-installation">Installation</span>
+        <span class="card-date">2014</span>
+      </div>
+      <div class="card-title">MakeyMakey — Jumping Jonny</div>
+      <div class="card-desc">A physical installation built with Arduino and MakeyMakey. Turn anything conductive into a game controller — bananas, Play-Doh, your hands.</div>
+      <div class="card-footer">
+        <span class="card-platform">Arduino · MakeyMakey</span>
         <span class="card-link-icon">↗</span>
       </div>
     </div>

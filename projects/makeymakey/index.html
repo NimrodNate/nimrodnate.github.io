@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MakeyMakey — Jumping Jonny · NH.LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1319;
+    --border: #1a2530;
+    --accent: #00e5ff;
+    --accent2: #ff3d6b;
+    --text: #c8d8e8;
+    --muted: #4a6070;
+    --white: #f0f8ff;
+    --installation: #e879f9;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,229,255,0.015) 2px, rgba(0,229,255,0.015) 4px);
+    pointer-events: none; z-index: 1000;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative; z-index: 10;
+    padding: 48px 40px 32px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    gap: 24px; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .logo-label { font-size: 11px; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .logo-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); color: var(--white); letter-spacing: -0.02em; line-height: 0.95; }
+  .logo-name span { color: var(--accent); }
+  .logo-sub { margin-top: 10px; font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+
+  nav { display: flex; gap: 24px; align-items: center; }
+  nav a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  .project-hero {
+    position: relative; z-index: 10;
+    padding: 56px 40px 48px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .project-meta-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px;
+    background: rgba(232,121,249,0.1); color: var(--installation);
+    border: 1px solid rgba(232,121,249,0.25);
+  }
+
+  .project-date {
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--muted); text-transform: uppercase;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 60px);
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: 20px;
+  }
+
+  .project-title em { font-style: normal; color: var(--installation); }
+
+  .project-intro {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  /* ─── IMAGE GALLERY ─── */
+  .gallery {
+    position: relative; z-index: 10;
+    padding: 48px 40px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.6s 0.15s ease both;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 4/3;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s, transform 0.4s;
+  }
+
+  .gallery-item:hover img { opacity: 1; transform: scale(1.04); }
+
+  /* Placeholder for gallery items without images */
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    background: var(--surface);
+  }
+
+  .gallery-placeholder-icon { font-size: 32px; opacity: 0.2; }
+
+  .gallery-placeholder-label {
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  .gallery-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 8px 12px;
+    background: linear-gradient(transparent, rgba(8,12,16,0.9));
+    font-size: 10px; letter-spacing: 0.1em; color: var(--muted);
+    opacity: 0; transition: opacity 0.2s;
+  }
+
+  .gallery-item:hover .gallery-caption { opacity: 1; }
+
+  /* ─── CONTENT SECTIONS ─── */
+  .content-section {
+    position: relative; z-index: 10;
+    padding: 48px 40px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .content-label {
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent);
+    padding-top: 4px;
+  }
+
+  .content-body {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.85;
+  }
+
+  .content-body p + p { margin-top: 16px; }
+
+  .content-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--white);
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+
+  .content-body h3:first-child { margin-top: 0; }
+
+  /* ─── TECH STACK ─── */
+  .tech-chips {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tech-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative; z-index: 10;
+    padding: 32px 40px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-copy { font-size: 10px; letter-spacing: 0.15em; color: var(--muted); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    header, .project-hero, .gallery, .content-section, footer { padding-left: 20px; padding-right: 20px; }
+    .content-section { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo-block">
+    <div class="logo-label">// Personal Lab</div>
+    <div class="logo-name">NH<span>.</span>LAB</div>
+    <div class="logo-sub">Nathaniel Hulley &mdash; XR &amp; Emerging Tech</div>
+  </div>
+  <nav>
+    <a href="../../index.html" class="back-link">← Back to Lab</a>
+    <a href="../../about.html">About</a>
+    <a href="https://www.linkedin.com/in/nathanielhulley/" target="_blank">LinkedIn</a>
+  </nav>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="project-hero">
+  <div class="project-meta-row">
+    <span class="project-tag">Installation</span>
+    <span class="project-date">2014</span>
+  </div>
+  <h1 class="project-title">MakeyMakey —<br><em>Jumping Jonny</em></h1>
+  <p class="project-intro">
+    <!-- ADD YOUR INTRO HERE — 2-3 sentences about what this was, where it was shown, and why you built it -->
+    A physical interactive installation built with Arduino and MakeyMakey. Add your intro here.
+  </p>
+</div>
+
+<!-- ─── IMAGE GALLERY ─── -->
+<div class="gallery">
+  <div class="gallery-grid">
+
+    <!-- Replace these placeholders with your actual images -->
+    <!-- Pattern: <div class="gallery-item"><img src="../../img/jonny-1.jpg" alt="caption"><div class="gallery-caption">Your caption</div></div> -->
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">🖼️</div>
+        <div class="gallery-placeholder-label">Add image</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">🖼️</div>
+        <div class="gallery-placeholder-label">Add image</div>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">🖼️</div>
+        <div class="gallery-placeholder-label">Add image</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── THE IDEA ─── -->
+<div class="content-section">
+  <div class="content-label">// The Idea</div>
+  <div class="content-body">
+    <!-- ADD YOUR COPY HERE -->
+    <p>Describe what the project was and why you built it. What problem were you solving, or what were you experimenting with?</p>
+    <p>Was this for an event, an office demo, a hackathon? Give it some context.</p>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKED ─── -->
+<div class="content-section">
+  <div class="content-label">// How It Worked</div>
+  <div class="content-body">
+    <!-- ADD YOUR COPY HERE -->
+    <h3>The Setup</h3>
+    <p>Explain the physical setup — what did people interact with? What was the controller made of?</p>
+
+    <h3>The Tech</h3>
+    <p>Walk through how the MakeyMakey and Arduino were wired together. What did the code do?</p>
+  </div>
+</div>
+
+<!-- ─── TECH STACK ─── -->
+<div class="content-section">
+  <div class="content-label">// Built With</div>
+  <div class="content-body">
+    <div class="tech-chips">
+      <span class="tech-chip">🕹️ MakeyMakey</span>
+      <span class="tech-chip">⚡ Arduino</span>
+      <span class="tech-chip">💻 JavaScript</span>
+      <!-- Add or remove chips as needed -->
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHAT I LEARNED ─── -->
+<div class="content-section">
+  <div class="content-label">// What I Learned</div>
+  <div class="content-body">
+    <!-- ADD YOUR COPY HERE -->
+    <p>What did this teach you? Any surprises, failures, or things you'd do differently?</p>
+    <p>Even a short reflection makes the project feel alive rather than just archived.</p>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-links">
+    <a href="../../index.html">← Back to Lab</a>
+    <a href="https://www.linkedin.com/in/nathanielhulley/" target="_blank">LinkedIn</a>
+    <a href="https://www.nathanielhulley.com" target="_blank">Portfolio</a>
+  </div>
+  <div class="footer-copy">// NH.LAB &mdash; Nathaniel Hulley &copy; 2025</div>
+</footer>
+
+</body>
+</html>
