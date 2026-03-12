@@ -376,6 +376,8 @@
   .type-ai { background: rgba(255,61,107,0.1); color: var(--accent2); border: 1px solid rgba(255,61,107,0.25); }
   .type-xr { background: rgba(140,80,255,0.1); color: #a78bfa; border: 1px solid rgba(140,80,255,0.25); }
   .type-web { background: rgba(80,200,120,0.1); color: #4ade80; border: 1px solid rgba(80,200,120,0.25); }
+  .type-game { background: rgba(249,115,22,0.1); color: #f97316; border: 1px solid rgba(249,115,22,0.25); }
+  .type-game { background: rgba(249,115,22,0.1); color: #f97316; border: 1px solid rgba(249,115,22,0.25); }
 
   .card-date {
     font-size: 10px;
@@ -585,7 +587,8 @@
   <button class="tag" data-filter="xr"><span class="tag-dot" style="background:#a78bfa"></span>XR</button>
   <button class="tag" data-filter="webaar"><span class="tag-dot" style="background:#4ade80"></span>WebAR</button>
   <button class="tag" data-filter="location"><span class="tag-dot" style="background:#f59e0b"></span>Location</button>
-  <span class="filter-count">Showing <span id="count">5</span> experiments</span>
+  <button class="tag" data-filter="game"><span class="tag-dot" style="background:#f97316"></span>Game</button>
+  <span class="filter-count">Showing <span id="count">6</span> experiments</span>
 </div>
 
 <div class="experiments-grid">
@@ -683,6 +686,25 @@
       <div class="card-desc">A pipeline for scanning physical objects with Polycam and publishing them as interactive 3D embeds on the web — no app required.</div>
       <div class="card-footer">
         <span class="card-platform">Polycam · model-viewer</span>
+        <span class="card-link-icon">↗</span>
+      </div>
+    </div>
+  </a>
+  <!-- Boost — Unity WebGL -->
+  <a href="games/project-boost-webgl" class="card" data-tags="game">
+    <div class="card-thumb">
+      <img src="img/my-game-thumb.jpg" alt="Project Boost — Unity WebGL game">
+      <div class="hosted-badge">Hosted here</div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-type type-game">Game · Unity</span>
+        <span class="card-date">2025</span>
+      </div>
+      <div class="card-title">Boost</div>
+      <div class="card-desc">A rocket game where you navigate through obstacle courses using thrust and rotation. Built in Unity with C# — my first complete WebGL game export. Based on the Gamedev.tv course.</div>
+      <div class="card-footer">
+        <span class="card-platform">Unity · WebGL · C#</span>
         <span class="card-link-icon">↗</span>
       </div>
     </div>
